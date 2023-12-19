@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Free Panel</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://kit.fontawesome.com/f2057f9f44.js" crossorigin="anonymous"></script>
+    <script src="desktop.js"></script>
+    <link id="dynamic-styles" rel="stylesheet" type="text/css" href="desktop.css">
+  </head>
+
+  <body>
+
+    <script>
+      function debounce(func, delay) {
+        let timeoutId;
+        return function() {
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(() => {
+            func.apply(this, arguments);
+          }, delay);
+        };
+      }
+
+      function changeFile() {
+        const screenWidth = window.innerWidth;
+
+        if (screenWidth <= 768 && !window.location.href.includes('mobile.html')) {
+          window.location.href = 'mobile.html';
+        } else if (screenWidth > 768 && !window.location.href.includes('index.html')) {
+          window.location.href = 'index.html';
+        }
+      }
+      const debouncedChangeFile = debounce(changeFile, 200);
+
+      window.addEventListener("load", debouncedChangeFile);
+      window.addEventListener("resize", debouncedChangeFile);
+    </script>
+
+  <div id="particles-js"></div>
+  <script src="https://app.darksidepanel.com/assets/js/particles.js"></script>
+  <script src="https://app.darksidepanel.com/assets/js/app.js"></script>
+
+  <div id="navbar">
+    <a id="navbar-docs" href="https://darksidepanel.com/api">API Docs</a>
+    <a id="navbar-title"><%= link_to $title, root_path%></a>
+    <a id="navbar-button" href="https://darksidepanel.com">Upgrade</box-icon></a>
+  </div>
+
+  <section id="displaySection">
+
+    <div id="ad">
+        <img src="https://cdn.discordapp.com/attachments/1012809224675401849/1185721207673327657/standard.gif?ex=6590a3ed&is=657e2eed&hm=27d41aae900a9d5354c8786c6eae0a2be07f12fae36f8cfaf51848a3bcd70d29&" alt="Animated Ad">
+    </div>
+
+    <div id="selectionGrid">
+      <div id="header">
+        <h1 id="header-title">Choose A Platform</h1>
+        <p>Choose a service from the navigation bar.</p>
+      </div>
+
+      <div class="menu-icon"></div>
+
+      <div id="nav">
+        <a id="tiktok"><i class="fa-brands fa-tiktok" style="margin-right: 5px;"></i>TikTok</a>
+        <a id="youtube"><i class="fa-brands fa-youtube" style="margin-right: 5px;"></i>Youtube</a>
+        <a id="instagram"><i class="fa-brands fa-instagram" style="margin-right: 5px;"></i>Instagram</a>
+      </div>
+
+      <p id="timer"></p>
+    </div>
+
+</section>
+
+<footer class="footer">
+  <p style="font-family: 'Inter'; font-size: 1.5vh;">Powered by <a href="https://darksidepanel.com">DarkSide Panel</a></p>
+</footer>
+  </body>
+</html>
