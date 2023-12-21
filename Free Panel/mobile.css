@@ -1,47 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kanit');
+@import url('https://fonts.googleapis.com/css2?family=Inter');
 
 ::-webkit-scrollbar{
     display: none;
-}
-@media (max-width: 768px) {
-    #ad img {
-        width: 35vh !important; 
-        height: auto !important;
-    }
-
-    #navbar-title{
-        font-size: 2vh !important;
-    }
-
-    .box {
-        width: 25vh !important;
-        height: 15vh !important;
-    }
-
-    #boxes {
-        top: 85% !important;
-        transform: translateY(-85%) !important;
-    }
-
-    #header {
-        top: 30% !important;
-        transform: translate(-50%, -30%) !important;
-    }
-    #header-title {
-        font-size: 3vh !important;
-        margin-top: 80px !important;
-        overflow: hidden;
-        white-space: nowrap;
-    }
-
-    #selectionGrid a {
-        width: 20vh !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-top: 15px;
-    }
 }
 
 body {
@@ -58,7 +20,7 @@ body {
 
 #particles-js {
     position: absolute;
-    height: 99vh;
+    height: 90vh;
 }
 footer{
     bottom: 0;
@@ -128,11 +90,14 @@ footer{
     text-align: center;
 }
 #header-title {
+    overflow: hidden;
     font-size: 3vh;
+    white-space: nowrap;
 }
+
 #ad {
     position: absolute;
-    top: 190px;
+    top: 160px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 15px;
@@ -141,8 +106,8 @@ footer{
 #ad img {
     border-radius: 15px;
     display: block;
-    width: 500px;
-    height: 70px;
+    width: 35vh !important; 
+    height: 6vh !important;
 }
 
 .main-title {
@@ -163,7 +128,7 @@ footer{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30vh;
+    width: 25vh;
     color: white;
     text-decoration: none;
     padding: 20px;
@@ -173,7 +138,6 @@ footer{
 }
 
 #tiktok {
-    width: 20vh;
     background-color: black;
     color: white;
     text-shadow: 1px 1px turquoise, -1px -1px red;
@@ -206,10 +170,9 @@ footer{
 }
 
 #f1,#f2,#f3{
-    border: solid 1px white;
+    background-color: #131212;
 }
 
-  
 .fade {
 animation: fade-in 1s;
 }
@@ -226,4 +189,64 @@ to {
 #headerIcon, #serviceHeader{
     color: rgb(255, 255, 255);
     text-shadow: 1px 1px turquoise, -1px -1px red;
+}
+
+#selectionGrid {
+    color: white;
+}
+
+#selectionGrid h1{
+    font-size: 5vh;
+}
+
+#selectionGrid p{
+    font-size: 2vh;
+    font-family: "Inter";
+}
+#selectionGrid input{
+    color: white;
+    background-color: #131212;
+    border: none;
+    padding: 10px;
+    outline: none;
+    width: 25vh;
+}
+
+#sButton{
+    font-family: "Kanit";
+    border: none;
+    padding: 1em;
+    border-radius: 0.5em;
+    background: none;
+    color: white;
+    border: 0.2vh solid white;
+    transition: .2s ease-in-out all;
+    font-size: 1.5vh;
+}
+
+#sButton:hover{
+    padding: 1em;
+    border-radius: .5em;
+    background: white;
+    color: black;
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+#back{
+    font-size: 3vh;
+    position: absolute;
+    top: 150%;
+    left: 50%;
+    transform: translate(-50%,-150%);
+}
+
+#timer{
+    font-size: 3vh;
+    color: rgb(199, 60, 60);
+    font-family: "Kanit";
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%,-75%);
 }
