@@ -1,39 +1,37 @@
-
 document.addEventListener("DOMContentLoaded", function() {
     let container = document.querySelector("html");
     if(window.innerWidth <= 768){
         container.innerHTML = `
         <!DOCTYPE html>
         <html>
-        <head>
-            <script src="changeHTML.js"></script>
-            <title>Free Panel</title>
-            <meta name="viewport" content="width=device-width,initial-scale=1">
-            <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-            <script src="https://kit.fontawesome.com/f2057f9f44.js" crossorigin="anonymous"></script>
-            <link id="dynamic-styles" rel="stylesheet" type="text/css" href="mobile.css">
-            <script>
-            let isMobile = window.innerWidth <= 768;
-      
-            let scriptSrc = isMobile ? 'mobile.js' : 'main.js';
-      
-            let scriptElement = document.createElement('script');
-            scriptElement.src = scriptSrc;
-            scriptElement.id = 'js';
-      
-            document.head.appendChild(scriptElement);
-          </script>
-        </head>
+        <script src="https://kit.fontawesome.com/f2057f9f44.js" crossorigin="anonymous"></script>
+        <script>
+        let isMobile = window.innerWidth <= 768;
+  
+        let scriptSrc = isMobile ? 'mobile.js' : 'main.js';
+  
+        let scriptElement = document.createElement('script');
+        scriptElement.src = scriptSrc;
+        scriptElement.id = 'js';
+  
+        document.head.append(scriptElement);
+      </script>
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+      <script src="changeHTML.js"></script>
+      <title>Free Panel</title>
+      <link id="dynamic-styles" rel="stylesheet" type="text/css" href="mobile.css">
+    </head>
         <body>
         <div id="particles-js"></div>
         <script src="https://app.darksidepanel.com/assets/js/particles.js"></script>
         <script src="https://app.darksidepanel.com/assets/js/app.js"></script>
 
-        <div id="navbar">
-            <a id="navbar-docs" href="https://darksidepanel.com/api">API Docs</a>
-            <a id="navbar-title"></a>
-            <a id="navbar-button" href="https://darksidepanel.com">Upgrade</a>
-        </div>
+    <div id="navbar">
+        <a id="navbar-docs" href="https://darksidepanel.com/api">API Docs</a>
+        <a id="navbar-title"><%= link_to $title, root_path%></a>
+        <a id="navbar-button" href="https://darksidepanel.com">Upgrade</box-icon></a>
+      </div>
 
         <section id="displaySection">
             <div id="ad">
@@ -62,4 +60,5 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     }
 });
+
 
