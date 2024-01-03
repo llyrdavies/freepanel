@@ -49,43 +49,70 @@ function timer(){
         let display = document.querySelector('#timer');
         display.style.display = 'block';
         let intervalId = setInterval(function () {
-          minutes = parseInt(timer / 60, 10);
-          seconds = parseInt(timer % 60, 10);
-  
-          minutes = minutes < 10 ? "0" + minutes : minutes;
-          seconds = seconds < 10 ? "0" + seconds : seconds;
-  
-          display.textContent = minutes + ":" + seconds;
-  
-          if (--timer < 0) {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+    
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+            display.textContent = minutes + ":" + seconds;
+    
+            if (--timer < 0) {
             clearInterval(intervalId);
             display.style.display = 'none';
             submitButton.disabled = false;
             submitButton.style.opacity = 1;
             localStorage.removeItem('savedTime');
-          } else {
+            } else {
             submitButton.disabled = true;
             submitButton.style.opacity = 0.5;
-          }
+            }
         }, 1000);
-      }
-      
+        }
+        
     if (savedTime) {
-      let timeLeft = (180000 - (Date.now() - savedTime)) / 1000;
-      console.log(timeLeft);
-      if (timeLeft > 0) {
+        let timeLeft = (180000 - (Date.now() - savedTime)) / 1000;
+        console.log(timeLeft);
+        if (timeLeft > 0) {
         submitButton.disabled = true;
         submitButton.style.opacity = 0.5;
         startTimer(timeLeft);
-      } else {
+        } else {
         submitButton.disabled = false;
         submitButton.style.opacity = 1;
-      }
+        }
     }
 
     submitButton.addEventListener("click", () => {
-        startTimer(180);
-        localStorage.setItem('savedTime', Date.now());
+        let inputField = document.querySelector("input");
+
+        if (inputField.value === ""){
+            let error = document.createElement("p");
+            error.setAttribute("id","error");
+            error.setAttribute("class","fade");
+            error.textContent = "Invalid Link";
+            error.style.color = "red";
+            error.style.marginBottom = "-20px";
+            inputField.parentNode.insertBefore(error, inputField.nextSibling);
+            setTimeout(() => {
+                error.remove();
+            }, 2000);
+        } else{
+            let tiktok = document.querySelector("#tiktok");
+            let instagram = document.querySelector("#instagram");
+            let youtube = document.querySelector("#youtube");
+            
+            startTimer(180);
+            localStorage.setItem('savedTime', Date.now());
+            let header = document.querySelector("#header");
+            header.innerHTML = `
+            <i class="fa-solid fa-circle-check fade" style="font-size: 6vh; color: green;"></i>
+            <h1 class="fade" style="font-size: 4vh;">Request Sent</h1>`;
+
+            tiktok.addEventListener("click",redirect("tiktok"));
+            instagram.addEventListener("click",redirect("instagram"));
+            youtube.addEventListener("click",redirect("youtube"));
+        }
     });
 }
 
@@ -121,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <br><br>
             <input placeholder="Enter Link" class="fade" id="tiktokInput" name="link">
             <br><br>
-            <button id="sButton" class="fade" onClick="redirect('tiktok')">Submit</button>
+            <button id="sButton" class="fade">Submit</button>
             `;
             timer();
         });
@@ -140,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <br><br>
             <input placeholder="Enter Link" class="fade" id="instagramInput" name="link">
             <br><br>
-            <button id="sButton" class="fade" onClick="redirect('instagram')">Submit</button>
+            <button id="sButton" class="fade">Submit</button>
             `;
             timer();
         });
@@ -159,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <br><br>
             <input placeholder="Enter Link" class="fade" id="youtubeInput" name="link">
             <br><br>
-            <button id="sButton" class="fade" onClick="redirect('youtube')>Submit</button>
+            <button id="sButton" class="fade">Submit</button>
             `;
             timer();
             });
@@ -173,3 +200,5 @@ document.addEventListener("DOMContentLoaded", () => {
         menuIcon.classList.toggle("active");
     });
 });
+
+console.log("Desktop script loaded!");
