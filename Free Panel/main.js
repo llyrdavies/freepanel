@@ -49,38 +49,38 @@ function timer(){
         let display = document.querySelector('#timer');
         display.style.display = 'block';
         let intervalId = setInterval(function () {
-          minutes = parseInt(timer / 60, 10);
-          seconds = parseInt(timer % 60, 10);
-  
-          minutes = minutes < 10 ? "0" + minutes : minutes;
-          seconds = seconds < 10 ? "0" + seconds : seconds;
-  
-          display.textContent = minutes + ":" + seconds;
-  
-          if (--timer < 0) {
+            minutes = parseInt(timer / 60, 10);
+            seconds = parseInt(timer % 60, 10);
+    
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+    
+            display.textContent = minutes + ":" + seconds;
+    
+            if (--timer < 0) {
             clearInterval(intervalId);
             display.style.display = 'none';
             submitButton.disabled = false;
             submitButton.style.opacity = 1;
             localStorage.removeItem('savedTime');
-          } else {
+            } else {
             submitButton.disabled = true;
             submitButton.style.opacity = 0.5;
-          }
+            }
         }, 1000);
-      }
-      
+        }
+        
     if (savedTime) {
-      let timeLeft = (180000 - (Date.now() - savedTime)) / 1000;
-      console.log(timeLeft);
-      if (timeLeft > 0) {
+        let timeLeft = (180000 - (Date.now() - savedTime)) / 1000;
+        console.log(timeLeft);
+        if (timeLeft > 0) {
         submitButton.disabled = true;
         submitButton.style.opacity = 0.5;
         startTimer(timeLeft);
-      } else {
+        } else {
         submitButton.disabled = false;
         submitButton.style.opacity = 1;
-      }
+        }
     }
 
     submitButton.addEventListener("click", () => {
@@ -200,3 +200,5 @@ document.addEventListener("DOMContentLoaded", () => {
         menuIcon.classList.toggle("active");
     });
 });
+
+console.log("Desktop script loaded!");
