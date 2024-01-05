@@ -4,6 +4,18 @@
 
 
 @media (max-width: 850px) {
+    .menu-icon:hover {
+        background-color: #fdfdfd !important;
+    }
+    .menu-icon:hover::after {
+        background-color: #fdfdfd !important;
+    }
+    .menu-icon:hover::before {
+        background-color: #fdfdfd !important;
+    }
+    .menu-icon.active::after {
+        transform: rotate(90deg) translateY(0vh) translateX(-1.2vh) !important;
+    }
     #ad{
         top: 120px !important;
     }
@@ -11,9 +23,9 @@
        width: 350px !important; 
     }
     #selectionGrid{
-        top: 60% !important;
+        top: 80% !important;
         left: 50% !important;
-        transform: translate(-50%, -60%) !important;
+        transform: translate(-50%, -80%) !important;
         width: 40vh !important;
         height: 55vh !important;
     }
