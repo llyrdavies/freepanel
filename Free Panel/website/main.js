@@ -35,12 +35,6 @@ window.addEventListener("load", () => {
     }
 });
 
-function redirect(platform) {
-    let dropdownValue = document.querySelector("#tools").value;
-    location.href = `/${platform}/${dropdownValue}api`;
-}
-
-
 function timer(){
     let submitButton = document.querySelector("#sButton");
     
@@ -85,11 +79,12 @@ function timer(){
 
     submitButton.addEventListener("click", () => {
         let inputField = document.querySelector("input");
-
-        if (inputField.value === ""){
+        const linkRegex = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
+    
+        if (!linkRegex.test(inputField.value) || inputField.value === "") {
             let error = document.createElement("p");
-            error.setAttribute("id","error");
-            error.setAttribute("class","fade");
+            error.setAttribute("id", "error");
+            error.setAttribute("class", "fade");
             error.textContent = "Invalid Link";
             error.style.color = "red";
             error.style.marginBottom = "-20px";
@@ -97,24 +92,63 @@ function timer(){
             setTimeout(() => {
                 error.remove();
             }, 2000);
-        } else{
-            let tiktok = document.querySelector("#tiktok");
-            let instagram = document.querySelector("#instagram");
-            let youtube = document.querySelector("#youtube");
-            
-            startTimer(180);
+        }else{
+            let dropdownValue = document.querySelector("#tools").value;
+            let link = document.querySelector("input").value;
             localStorage.setItem('savedTime', Date.now());
-            let header = document.querySelector("#header");
-            header.innerHTML = `
-            <i class="fa-solid fa-circle-check fade" style="font-size: 6vh; color: green;"></i>
-            <h1 class="fade" style="font-size: 4vh;">Request Sent</h1>`;
 
-            tiktok.addEventListener("click",redirect("tiktok"));
-            instagram.addEventListener("click",redirect("instagram"));
-            youtube.addEventListener("click",redirect("youtube"));
+            let platform;
+            let sButton = document.querySelector("#sButton");
+            let header_title = document.querySelector("#header-title");
+            let headerL = header_title.textContent.toLowerCase();           
+            if (headerL.includes("tiktok")) {
+                platform = "tiktok";
+            } else if (headerL.includes("youtube")) {
+                platform = "youtube";
+                if(dropdownValue === "followers"){
+                    dropdownValue = "subscribers";
+                }
+            } else {
+                platform = "instagram";
+            }
+
+            sButton.addEventListener("click",sendReq(platform,dropdownValue,link));
+    
         }
     });
 }
+
+
+function sendReq(platform, dropdownValue, link) {
+    let header = document.querySelector("#header");
+    const value = `https://darksidepanel.com/api/v2/${platform}/${dropdownValue}api?link=${link}`;
+    fetch(value, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ value }),
+    })
+    .then(response => {
+        if (response.ok) {
+            console.log("Request Sent Successfully.");
+            header.innerHTML = `
+            <i class="fa-solid fa-circle-check fade" style="font-size: 6vh; color: green;"></i>
+            <h1 class="fade" style="font-size: 4vh;">Request Sent</h1>`;
+            startTimer(180);
+        } else {
+        }
+    })
+    .catch(error => {
+        console.error("Error Sending Request.");
+        header.innerHTML = `
+        <i class="fa-solid fa-circle-xmark fade" style="font-size: 6vh; color: red;"></i>
+        <h1 class="fade" style="font-size: 4vh;">Bad Request</h1>
+        <p>Try again. (${error})</p>
+        `;
+    });
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
     let navbar = document.querySelector("#nav");
