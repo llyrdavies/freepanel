@@ -9,11 +9,12 @@
     <meta property="og:description" content="Free Panel - Darksidepanel, Free SMM Service.">
     <meta name="keywords" content="DarkSide Panel, DarkSide Panel App, download darksidepanel, DarkSide Panel Download, darksidepanel app download, darksidepanel app, darksidepanel app windows">
     <script src="https://kit.fontawesome.com/f2057f9f44.js" crossorigin="anonymous"></script>
-    <script src="main.js" id="js"></script>
+    <%= javascript_include_tag 'debugger' %>
+    <%= javascript_include_tag 'main' %>
     <title>Free Panel</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" id="css">
+    <%= stylesheet_link_tag 'main' %>
   </head>
   <body>
     <div id="particles-js"></div>
@@ -22,14 +23,15 @@
 
     <div id="navbar">
       <a id="navbar-docs" href="https://darksidepanel.com/api">API Docs</a>
-      <a id="navbar-title"><%= link_to $title, root_path%></a>
+      <h2><a id="navbar-title" href="/"><%= $title %></a></h2>
+      <a id="sub-navbar-title">Zefoy is shit, use free panel instead.</a>
       <a id="navbar-button" href="https://darksidepanel.com">Upgrade</box-icon></a>
     </div>
 
     <section id="displaySection">
 
       <div id="ad">
-          <img src="https://cdn.discordapp.com/attachments/1012809224675401849/1185721207673327657/standard.gif?ex=6590a3ed&is=657e2eed&hm=27d41aae900a9d5354c8786c6eae0a2be07f12fae36f8cfaf51848a3bcd70d29&" alt="Animated Ad">
+          <a href="https://darksidepanel.com"><img src="https://cdn.discordapp.com/attachments/1012809224675401849/1185721207673327657/standard.gif?ex=6590a3ed&is=657e2eed&hm=27d41aae900a9d5354c8786c6eae0a2be07f12fae36f8cfaf51848a3bcd70d29&" alt="Animated Ad"></a>
       </div>
 
       <div id="selectionGrid">
@@ -52,7 +54,8 @@
   </section>
 
   <footer class="footer">
-    <p style="font-family: 'Inter'; font-size: 1.5vh;">Powered by <a href="https://darksidepanel.com">DarkSide Panel</a></p>
+    <p style="font-family: 'Inter'; font-size: 1.5vh;">Powered by <a href="https://darksidepanel.com">DarkSide Panel</a> | <a href="https://discord.gg/darksidepanel">Buy Ad Slot</a></p>
   </footer>
+  <a id="version">&#9432;</a>
   </body>
 </html>
